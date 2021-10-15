@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if ! command -v profile 2>/dev/null; then
+  source "${BASH_SOURCE[0]%/*}/profile"
+fi
+

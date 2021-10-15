@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+
+filefuncs() {
+  local functions
+
+  typeset -f | awk '/ \(\) $/ && !/^main / {print $1}'
+  readarray -t functions < <(env -i bash --noprofile --norc <<EOF
+source "${BASH_SOURCE[0]}"
+declare -F | grep -v ' _' | awk '{print \$3}'
+EOF
+  )
+  printf '%s\n' "${functions[@]}"
+}
+
+resolve() {
+  # Realpath resolving symlink
+  local cmd
+  if cmd="$( command -v realpath 2>/dev/null )"; then
+    ${cmd} "${@:-.}"
+  else
+    python -c "import os; print(os.path.realpath('${1:-${BASH_SOURCE[0]}}'))"
+  fi
+}
+
+sourced() {
+  if ((${BASH_LINENO[1]:-0} == 0)); then
+    return 1
+  fi
+}
+
+#######################################
+# Init 'VARS' associated array, calls vars-* functions to set values in 'VARS' and export 'VARS' keys.
+# Globals:
+#   BASH_HELP         help (first line will be description) message for function
+#   VARS              associated array with all global vars set in profile to be exported
+# Arguments:
+#   None
+# Global Arguments:
+#   --desc            show description and exit
+#   --help            show help and exit
+# Outputs:
+#   Writes description or help to stdout
+#######################################
+vars() {
+  local function
+
+  # 'VARS' - set
+  while read -r function; do
+    ${function}
+  done < <( filefuncs | grep "${FUNCNAME[0]}-" | sort -u )
+
+  if [ "${DEBUG-}" ]; then
+    env -i "${VARS[BASH]}" --noprofile --norc <<EOF
+source "${BASH_SOURCE[0]}"
+vars
+declare -px | grep -v "OLDPWD\|PWD\|SHLVL" | awk '{print \$3}'
+EOF
+  fi
+}
+
+main() {
+  if ! which "${BASH_SOURCE[0]##*/}" 2>/dev/null; then
+    source "${BASH_SOURCE[0]%/*}/profile"
+  fi
+}
+#
+#main "${@}"

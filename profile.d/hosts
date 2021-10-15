@@ -1,0 +1,4 @@
+#!/bin/sh
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+192.168.1.63 mini.com mini
