@@ -1,4 +1,6 @@
-# System Bootstrap: Linux and macOS
+# Run Commands: system bootstrap and shell utils.
+
+Renamed from btrap. 
 
 
 ## Installing 🚀

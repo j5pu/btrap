@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Brief description of your script
+# Copyright 2021 j5pux
+
+main() {
+  echo "${@}"
+}
+
+main "${@}"
