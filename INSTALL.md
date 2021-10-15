@@ -144,6 +144,9 @@ Keychain APIs as easy as NSUserDefaults.
 
 ## Other
 
+### [ini2toml](https://github.com/abravalheri/ini2toml)
+Automatically conversion of `.ini/.cfg` files to TOML equivalents.
+
 ### [niet](https://github.com/openuado/niet)
 
 Parse/Read yaml or json files directly in your shell (sh, bash, ksh, ...).
@@ -158,7 +161,8 @@ Metadata in `pyproyect.toml`.
 
 ### [pyicloud](https://github.com/picklepete/pyicloud)
 
-PyiCloud is a module which allows pythonistas to interact with iCloud webservices. It's powered by the fantastic [requests](https://github.com/kennethreitz/requests) HTTP library.
+PyiCloud is a module which allows pythonistas to interact with iCloud webservices. 
+It's powered by the fantastic [requests](https://github.com/kennethreitz/requests) HTTP library.
 
 ### [quickmenu](https://github.com/wimpysworld/quickemu)
 
@@ -187,3 +191,6 @@ Fast, configurable, command-line tool to manage your shell plugins.
 * el getopt
 * [man](https://docs.asciidoctor.org/asciidoctor/latest/manpage-backend/) colores y referencias y [color en map](https://felipec.wordpress.com/2021/06/05/adventures-with-man-color/)
 * help/usage con man page de los scripts que estoy usando. hacer un script que sea de grep e los atributos y que pruebe primero si tiene man y luego si tiene --help.
+* el puto servidor de gcloud crearlo de una puta vez.
+* ahora  la mierda de hacer un paquete que sea jet para manejar jetbrains iconos etc.
+* 
