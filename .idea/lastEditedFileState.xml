@@ -3,12 +3,15 @@
   <component name="LastEditedFileState">
     <option name="lastEditedMap">
       <map>
-        <entry key="$PROJECT_DIR$/../rc/.gitignore" value="1634308892470" />
-        <entry key="$PROJECT_DIR$/../rc/README.md" value="1634309189309" />
-        <entry key="$PROJECT_DIR$/../rc/atom-icon-associations.xml" value="1634311830627" />
-        <entry key="$PROJECT_DIR$/../rc/btrap" value="1634313711184" />
-        <entry key="$PROJECT_DIR$/../rc/btrap.bats" value="1634300887287" />
-        <entry key="$PROJECT_DIR$/../rc/project-icon" value="1634313714812" />
+        <entry key="$PROJECT_DIR$/../rc/.dockerignore" value="1634319011883" />
+        <entry key="$PROJECT_DIR$/../rc/.gitignore" value="1634319013656" />
+        <entry key="$PROJECT_DIR$/../rc/Dockerfile" value="1634319007210" />
+        <entry key="$PROJECT_DIR$/../rc/README.md" value="1634319403919" />
+        <entry key="$PROJECT_DIR$/../rc/atom-icon-associations.xml" value="1634318240370" />
+        <entry key="$PROJECT_DIR$/../rc/btrap.bats" value="1634319008571" />
+        <entry key="$PROJECT_DIR$/../rc/icon.png" value="1634318383693" />
+        <entry key="$PROJECT_DIR$/../rc/project-icon" value="1634318387949" />
+        <entry key="$PROJECT_DIR$/../rc/rc" value="1634318783787" />
       </map>
     </option>
   </component>
