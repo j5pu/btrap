@@ -1,4 +1,4 @@
-# Run Commands: system bootstrap and shell utils.
+# System bootstrap
 
 **Renamed from btrap branch scratch in backups.**
 
