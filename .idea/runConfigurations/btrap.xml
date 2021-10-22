@@ -1,6 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="btrap" type="bashpro.bats-core" singleton="false">
-    <option name="testDataPath" value="$PROJECT_DIR$/btrap.bats" />
-    <method v="2" />
-  </configuration>
-</component>
