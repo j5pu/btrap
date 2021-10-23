@@ -78,6 +78,10 @@ main() {
     return
   fi
 
+  if test -d ./.git; then
+    # When run from the repository commit and push to use remote.
+    git all
+  fi
 
   logs
 
