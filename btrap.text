@@ -1,2 +1,2 @@
---clt clt btrap.d/clt.sh https://raw.githubusercontent.com/j5pux/main/btrap.d/clt.sh
---internet internet btrap.d/internet.sh https://raw.githubusercontent.com/j5pux/main/btrap.d/internet.sh
+--clt clt btrap.d/clt.sh https://raw.githubusercontent.com/j5pux/btrap/main/btrap.d/clt.sh
+--internet internet btrap.d/internet.sh https://raw.githubusercontent.com/j5pux/btrap/main/btrap.d/internet.sh
