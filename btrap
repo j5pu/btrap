@@ -45,8 +45,8 @@ _btrap()
 # Debug and stderr files
 logs() {
   local debug stderr
-  debug="${name}.debug"
-  stderr="${name}.stderr"
+  debug="/tmp/${name}.debug"
+  stderr="/tmp/${name}.stderr"
   rm -f "${debug}"
   rm -f "${stderr}"
   exec 19>"${debug}"
@@ -66,21 +66,23 @@ logs() {
 # Global Arguments:
 #   -h, --help        show help and exit
 main() {
-  local args=() internet password scripts=()
+  local args=() directory internet password scripts=()
   declare -g name="${BASH_SOURCE[0]##*/}"
-
-  cd /tmp || return 1
 
   if ((${BASH_LINENO[1]:-0} != 0)); then
     # I am sourced.
     complete -r "${name}"
     complete -F "_${name}" "${name}"
     return
-  fi
-
-  if test -d ./.git; then
-    # When run from the repository commit and push to use remote.
-    git all
+  else
+    directory="$( dirname "$0" )"
+    if test -d "${directory}/.git"; then
+      (
+        # When run from the repository commit and push to use remote.
+        cd "${directory}" || return 1
+        git all
+      )
+    fi
   fi
 
   logs

@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: arguments
         name: "Create: arguments.csv "
-        description: create arguments to be parsed (value if argument could expect a value)
+        description: Create arguments to be parsed (value if argument could expect a value)
         entry: |
           bash -c "root=$(pwd);
           repo=${root##*/};
