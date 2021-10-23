@@ -26,6 +26,7 @@ repos:
           user=$( git user );
           branch=$( git remote-branch-default );
           printf '' > ${file};
+          printf '%s ' $repo $file > ${file};
           git add ${file}"
         language: system
         stages:
