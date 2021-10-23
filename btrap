@@ -49,10 +49,10 @@ logs() {
   stderr="/tmp/${name}.stderr"
   rm -f "${debug}"
   rm -f "${stderr}"
+  exec > >(tee "${stderr}") 2>&1
   exec 19>"${debug}"
   export BASH_XTRACEFD=19
   set -x
-  exec > >(tee "${stderr}") 2>&1
 }
 
 #######################################

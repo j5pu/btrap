@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 echo $0
 
+#######################################
+# System bootstrap install
+# Globals:
+#   _URL  githubusercontent url
 main() {
   local sudo
   sudo="$( command -v sudo )"
-
+  [ ! "${_URL-}" ] || return 1
   if ${sudo} tee /usr/bin/btrap >/dev/null <<EOT
-script="\$( curl -sL https://raw.githubusercontent.com/j5pux/btrap/main/btrap )"
+script="\$( curl -sL "${_URL}/btrap" )"
 if [ "\${script-}" ]; then
   if ((\${BASH_LINENO[1]:-0} != 0)); then
     source <<< "\${script}"
