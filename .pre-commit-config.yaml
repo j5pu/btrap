@@ -27,7 +27,7 @@ repos:
           branch=$( git remote-branch-default );
           printf '' > ${file};
           for i in arguments.d/??-*.sh arguments.d/*.sh; do
-            echo $i
+            printf '%s ' ${i} >> $file
           done;
           git add ${file}"
         language: system
