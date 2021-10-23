@@ -19,7 +19,7 @@ repos:
 #          done && \
 #          git add ${file}"
         entry: |
-          bash -c "root=$(pwd) && \
+          bash -c "root=$(pwd) &&
           repo=${root##*/} && \
           compat=${repo}.d && \
           file=${repo}.text && \
