@@ -51,7 +51,8 @@ logs() {
   rm -f "${stderr}"
   exec 19>"${debug}"
   export BASH_XTRACEFD=19
-  exec > >(tee "${stderr}") 2>&1
+  exec 2>"${stderr}"
+#  exec > >(tee "${stderr}") 2>&1
 
   set -x
 }
@@ -136,7 +137,7 @@ EOF
   echo "${_INTERNET:-${INTERNET}}, ${_PASSWORD:-${PASSWORD}}"
   printf '%s\n' "${args[@]}"
   printf '%s\n' "${scripts[@]}"
-  unset
+  unset _INTERNET _PASSWORD _URL
 }
 
 main "${@}"
