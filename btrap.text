@@ -1,5 +1,0 @@
---password,password,arguments.d/00-password-value.sh,https://raw.githubusercontent.com/j5pux/btrap/main/arguments.d/00-password-value.sh,value
---internet,internet,arguments.d/10-internet-value.sh,https://raw.githubusercontent.com/j5pux/btrap/main/arguments.d/10-internet-value.sh,value
---sudoers,sudoers,arguments.d/20-sudoers.sh,https://raw.githubusercontent.com/j5pux/btrap/main/arguments.d/20-sudoers.sh,
---launcher,launcher,arguments.d/30-launcher.sh,https://raw.githubusercontent.com/j5pux/btrap/main/arguments.d/30-launcher.sh,
---clt,clt,arguments.d/40-clt.sh,https://raw.githubusercontent.com/j5pux/btrap/main/arguments.d/40-clt.sh,

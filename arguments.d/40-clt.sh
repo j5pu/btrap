@@ -28,5 +28,6 @@ main() {
 
   fi
 }
-
+echo $0
+exit
 main
