@@ -13,6 +13,7 @@ repos:
           branch=$( git remote-branch-default );
           printf '' > ${file};
           for i in arguments.d/??-*.sh; do
+            chmod +x ${i}
             base=$( basename ${i} .sh )
             name=$( awk -F  '-' '{ print $2 }' <<< ${base} )
             value=$( awk -F  '-' '{ print $3 }' <<< ${base} )

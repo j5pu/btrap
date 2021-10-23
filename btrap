@@ -58,16 +58,21 @@ logs() {
 #######################################
 # System bootstrap install
 # Globals:
+#   _INTERNET           new internet password to pass it to scripts in compat directories
+#   _PASSWORD           new user/sudo password to pass it to scripts in compat directories
+#   _URL                githubusercontent url to pass it to scripts in compat directories
 #   INTERNET            internet password
 #   PASSWORD            user/sudo password
 # Options:
 #   --internet value    internet password (default: \$INTERNET)
 #   --password value    user/sudo password (default: \$PASSWORD)
 # Global Arguments:
-#   -h, --help        show help and exit
+#   -h, --help          show help and exit
 main() {
-  local args=() directory internet password scripts=()
+  local args=() directory scripts=()
   declare -g name="${BASH_SOURCE[0]##*/}"
+  # bashsupport disable=BP2001
+  export _INTERNET _PASSWORD _URL="https://raw.githubusercontent.com/j5pux/btrap/main"
 
   if ((${BASH_LINENO[1]:-0} != 0)); then
     # I am sourced.
@@ -80,6 +85,7 @@ main() {
       (
         # When run from the repository commit and push to use remote.
         cd "${directory}" || return 1
+        chmod +x ./*/*.sh
         git all
       )
     fi
@@ -110,13 +116,13 @@ EOF
     --internet)
       args+=("${1}")
       if [[ ! "${2}" =~ ^-- ]]; then
-        shift; internet="${1}"
+        shift; _INTERNET="${1}"
       fi
       ;;
     --password)
       args+=("${1}")
       if [[ ! "${2}" =~ ^-- ]]; then
-        shift; password="${1}"
+        shift; _PASSWORD="${1}"
       fi
       ;;
     *)
@@ -126,9 +132,10 @@ EOF
     shift
   done
 
-  echo "${internet:-${INTERNET}}, ${password:-${PASSWORD}}"
+  echo "${_INTERNET:-${INTERNET}}, ${_PASSWORD:-${PASSWORD}}"
   printf '%s\n' "${args[@]}"
   printf '%s\n' "${scripts[@]}"
+  unset
 }
 
 main "${@}"
