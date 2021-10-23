@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2207,SC2086,SC1090
+#
+# System bootstrap install
+# Copyright 2021 j5pux
+
+
+#######################################
+# Debug and stderr files
+logs() {
+  local debug stderr
+  debug="/tmp/${BASH_SOURCE[0]##*/}.debug"
+  stderr="/tmp/${BASH_SOURCE[0]##*/}.stderr"
+  rm -f "${debug}"
+  rm -f "${stderr}"
+  exec 19>"${debug}"
+  export BASH_XTRACEFD=19
+  set -x
+  exec > >(tee "${stderr}") 2>&1
+}
+
+#######################################
+# System bootstrap install
+# Globals:
+#   INTERNET            internet password
+#   PASSWORD            user/sudo password
+# Options:
+#   --internet value    internet password (default: \$INTERNET)
+#   --password value    user/sudo password (default: \$PASSWORD)
+# Global Arguments:
+#   -h, --help        show help and exit
+main() {
+  logs
+  local args=() compat completion internet name="${BASH_SOURCE[0]##*/}" password scripts=()
+
+  if ((${BASH_LINENO[1]:-0} != 0)); then
+    # I am sourced.
+    completion="${BASH_SOURCE[0]}.completion"
+    if test -f "${completion}"; then
+      source "${completion}"
+      return
+    fi
+  fi
+
+  if compat="${BASH_SOURCE[0]}.d"; then
+    export PATH="${compat}:${PATH}"
+  else
+    compat="/tmp/${name}/${name}.d"
+  fi
+
+  while ((${#})); do
+    case "${1}" in
+      -h|--help)
+        args+=("${1}")
+        cat<<EOF
+Usage: ${0##*/} [options...] [arguments...]
+
+Description:
+  Boostrap all if not options are passed.
+
+Arguments:
+  -h,  --help         show help and exit
+
+Options:
+  --internet value    internet password (default: \$INTERNET)
+  --password value    user/sudo password (default: \$PASSWORD)
+  --clt               install Command Line Tools (default: True)
+EOF
+        return
+      ;;
+    --internet)
+      args+=("${1}")
+      if [[ ! "${2}" =~ ^-- ]]; then
+        shift; internet="${1}"
+      fi
+      ;;
+    --password)
+      args+=("${1}")
+      if [[ ! "${2}" =~ ^-- ]]; then
+        shift; password="${1}"
+      fi
+      ;;
+    *)
+      args+=("${1}")
+      scripts+=("${compat}/${1/--/}.sh")
+    esac
+    shift
+  done
+
+  if test -d "${compat}"; then
+    true
+  else
+    false
+  fi
+
+  echo "${internet:-${INTERNET}}, ${password:-${PASSWORD}}"
+  printf '%s\n' "${args[@]}"
+  printf '%s\n' "${scripts[@]}"
+}
+
+main "${@}"

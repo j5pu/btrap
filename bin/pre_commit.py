@@ -1,11 +1,5 @@
-#!/usr/bin/env bash
-#
-# Pre commit hook script
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+from pathlib import Path
 
-#######################################
-# Create info files with btrap args and compat scripts
-main() {
-  echo pre-commit
-}
-
-main
+print(Path.cwd())

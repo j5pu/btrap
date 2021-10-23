@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 #
-# Install Command Line Tools
-# Copyright 2021 j5pux
+# Set INTERNET global variable
 
 #######################################
-# Install Command Line Tools
+# Set INTERNET global variable
+# Globals:
+#   INTERNET            internet password
 main() {
   if which xcode-select &> /dev/null && ! xcode-select --print-path &> /dev/null; then
 
