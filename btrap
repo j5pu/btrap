@@ -53,7 +53,6 @@ logs() {
   export BASH_XTRACEFD=19
   exec 2>"${stderr}"
 #  exec > >(tee "${stderr}") 2>&1
-
   set -x
 }
 
@@ -138,6 +137,7 @@ EOF
   printf '%s\n' "${args[@]}"
   printf '%s\n' "${scripts[@]}"
   unset _INTERNET _PASSWORD _URL
+  >&2 echo a
 }
 
 main "${@}"
