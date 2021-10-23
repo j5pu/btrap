@@ -1,0 +1,33 @@
+repos:
+  - repo: local
+    hooks:
+      - id: arguments
+        name: create-arguments
+        description: create arguments from arguments.d
+#        entry: |
+#          bash -c "root=$(pwd) && \
+#          repo=${root##*/} && \
+#          compat=${repo}.d && \
+#          file=${repo}.text && \
+#          user=$( git user ) && \
+#          branch=$( git remote-branch-default ) && \
+#          printf '' > ${file} && \
+#          for i in arguments.d/??-*.sh arguments.d/*.sh; do \
+#            base=$( basename ${i} .sh | awk -F  '-' '{ print $1 }' ) \
+#            printf '%s ' --${base} ${base} ${i} https://raw.githubusercontent.com/${user}/${repo}/${branch}/${i} \
+#              >> ${file} \
+#          done && \
+#          git add ${file}"
+        entry: |
+          bash -c "root=$(pwd) && \
+          repo=${root##*/} && \
+          compat=${repo}.d && \
+          file=${repo}.text && \
+          user=$( git user ) && \
+          branch=$( git remote-branch-default ) && \
+          printf '' > ${file} && \
+          git add ${file}"
+        language: system
+        stages:
+          - commit
+        pass_filenames: false

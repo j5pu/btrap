@@ -9,8 +9,8 @@
 # Debug and stderr files
 logs() {
   local debug stderr
-  debug="/tmp/${BASH_SOURCE[0]##*/}.debug"
-  stderr="/tmp/${BASH_SOURCE[0]##*/}.stderr"
+  debug="/tmp/${name}.debug"
+  stderr="/tmp/${name}.stderr"
   rm -f "${debug}"
   rm -f "${stderr}"
   exec 19>"${debug}"
@@ -31,13 +31,16 @@ logs() {
 #   -h, --help        show help and exit
 main() {
   logs
-  local args=() compat completion internet name="${BASH_SOURCE[0]##*/}" password scripts=()
+  local args=() compat completion directory="${BASH_SOURCE[0]%/*}" i internet  password scripts=()
+  local completion="${directory}/bash_completion.d"
+  export name="${BASH_SOURCE[0]##*/}"
 
   if ((${BASH_LINENO[1]:-0} != 0)); then
     # I am sourced.
-    completion="${BASH_SOURCE[0]}.completion"
-    if test -f "${completion}"; then
-      source "${completion}"
+    if test -d "${completion}"; then
+      for i in "${completion}"/*; do
+        source "${i}"
+      done
       return
     fi
   fi
