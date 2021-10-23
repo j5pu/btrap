@@ -2,7 +2,7 @@ repos:
   - repo: local
     hooks:
       - id: arguments
-        name: Create "arguments.csv"
+        name: "Create: 'arguments.csv'"
         description: create arguments to be parsed (value if argument could expect a value)
         entry: |
           bash -c "root=$(pwd);
