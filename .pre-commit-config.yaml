@@ -27,7 +27,7 @@ repos:
           branch=$( git remote-branch-default );
           printf '' > ${file};
           for i in arguments.d/??-*.sh; do
-            base=$( basename ${i} .sh | awk -F  '-' '{ print $1 }' )
+            base=$( basename ${i} .sh | awk -F  '-' '{ print $2 }' )
             echo \"${base} ${i}\" >> $file
           done;
           git add ${file}"

@@ -1,5 +1,5 @@
-00 arguments.d/00-password.sh
-10 arguments.d/10-internet.sh
-20 arguments.d/20-sudoers.sh
-30 arguments.d/30-launcher.sh
-40 arguments.d/40-clt.sh
+password arguments.d/00-password.sh
+internet arguments.d/10-internet.sh
+sudoers arguments.d/20-sudoers.sh
+launcher arguments.d/30-launcher.sh
+clt arguments.d/40-clt.sh
