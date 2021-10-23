@@ -20,12 +20,12 @@ repos:
 #          git add ${file}"
         entry: |
           bash -c "root=$(pwd);
-          repo=${root##*/} &&
-          compat=${repo}.d &&
-          file=${repo}.text &&
-          user=$( git user ) &&
-          branch=$( git remote-branch-default ) &&
-          printf '' > ${file} &&
+          repo=${root##*/};
+          compat=${repo}.d;
+          file=${repo}.text;
+          user=$( git user );
+          branch=$( git remote-branch-default );
+          printf '' > ${file};
           git add ${file}"
         language: system
         stages:
